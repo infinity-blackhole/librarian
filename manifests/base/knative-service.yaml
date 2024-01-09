@@ -1,0 +1,23 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: librarian
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/maxScale: 3
+    spec:
+      serviceAccountName: shikanime-studio-labs@appspot.gserviceaccount.com
+      containers:
+        - image: gcr.io/shikanime-studio-labs/librarian
+          ports:
+            - containerPort: 8501
+              name: http1
+          env:
+            - name: VERTEXAI_SEARCH_PROJECT_ID
+              value: shikanime-studio-labs
+            - name: VERTEXAI_SEARCH_DATA_STORE_LOCATION
+              value: global
+            - name: VERTEXAI_SEARCH_DATA_STORE_ID
+              value: scientific_1704814637510

@@ -1,0 +1,17 @@
+apiVersion: skaffold/v4beta6
+kind: Config
+metadata:
+  name: librarian
+build:
+  artifacts:
+    - image: gcr.io/shikanime-studio-labs/librarian
+      kaniko: {}
+  googleCloudBuild: {}
+manifests:
+  kustomize:
+    paths:
+      - manifests/base
+deploy:
+  cloudrun:
+    projectid: shikanime-studio-labs
+    region: europe-west3
