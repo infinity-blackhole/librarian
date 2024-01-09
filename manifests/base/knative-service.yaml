@@ -8,16 +8,13 @@ spec:
       annotations:
         autoscaling.knative.dev/maxScale: 3
     spec:
-      serviceAccountName: shikanime-studio-labs@appspot.gserviceaccount.com
+      serviceAccountName: librarian-service-account@shikanime-studio-labs.iam.gserviceaccount.com
       containers:
         - image: gcr.io/shikanime-studio-labs/librarian
-          ports:
-            - containerPort: 8501
-              name: http1
           env:
-            - name: VERTEXAI_SEARCH_PROJECT_ID
+            - name: GOOGLE_CLOUD_PROJECT
               value: shikanime-studio-labs
-            - name: VERTEXAI_SEARCH_DATA_STORE_LOCATION
+            - name: VERTEXAI_SEARCH_LOCATION_ID
               value: global
             - name: VERTEXAI_SEARCH_DATA_STORE_ID
               value: scientific_1704814637510
